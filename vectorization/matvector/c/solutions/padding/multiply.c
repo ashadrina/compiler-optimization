@@ -28,14 +28,18 @@ void matvec(unsigned int rows, unsigned int cols,
     // dedicated function implementations, reduction of parameters, etc.).
     enum { inc_i = 1, inc_j = 1 };
 
-	__assume_aligned(a, 32);
-	__assume_aligned(b, 32);
-	__assume_aligned(x, 32);
+	FTYPE *ax[ROW];
+	for (i = 0; i < rows; i += inc_i) {
+        ax[i] = (FTYPE*)__builtin_assume_aligned(a[i], 32);
+    }
+	FTYPE* bx = (FTYPE*)__builtin_assume_aligned(b, 32);
+	FTYPE* xx = (FTYPE*)__builtin_assume_aligned(x, 32);
+
 
     for (i = 0; i < rows; i += inc_i) {
 #pragma ivdep
         for (j = 0; j < cols; j += inc_j) {
-            b[i] += a[i][j] * x[j] + c[i];
+            bx[i] += ax[i][j] * x[j] + xx[i];
         }
     }
 }
