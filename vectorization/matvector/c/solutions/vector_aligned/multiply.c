@@ -33,6 +33,7 @@ void matvec(unsigned int rows, unsigned int cols,
         ax[i] = (FTYPE*)__builtin_assume_aligned(a[i], 32);
     }
 	FTYPE* bx = (FTYPE*)__builtin_assume_aligned(b, 32);
+	FTYPE* cx = (FTYPE*)__builtin_assume_aligned(c, 32);
 	FTYPE* xx = (FTYPE*)__builtin_assume_aligned(x, 32);
 
 
@@ -40,7 +41,7 @@ void matvec(unsigned int rows, unsigned int cols,
 #pragma ivdep
 #pragma vector aligned
         for (j = 0; j < cols; j += inc_j) {
-            bx[i] += ax[i][j] * x[j] + xx[i];
+            bx[i] += ax[i][j] * xx[j] + cx[i];
         }
     }
 }
