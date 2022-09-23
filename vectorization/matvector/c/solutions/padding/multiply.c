@@ -15,7 +15,7 @@
 #include "multiply.h"
 
 void matvec(unsigned int rows, unsigned int cols,
-            FTYPE (*a)[cols], FTYPE *b, FTYPE *x, FTYPE *c)
+            FTYPE (*a)[cols], FTYPE *b, FTYPE *x)
 {
     int i, j;
 
@@ -39,7 +39,7 @@ void matvec(unsigned int rows, unsigned int cols,
     for (i = 0; i < rows; i += inc_i) {
 #pragma ivdep
         for (j = 0; j < cols; j += inc_j) {
-            bx[i] += ax[i][j] * x[j] + xx[i];
+            bx[i] += ax[i][j] * xx[j];
         }
     }
 }

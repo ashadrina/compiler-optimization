@@ -102,7 +102,6 @@ int main(int argc, char **argv)
 
     FTYPE a[ROW][COLWIDTH];
     FTYPE b[ROW] = { 0.0 };
-	FTYPE c[ROW] = { 0.0 };
     FTYPE x[COLWIDTH];
 
     printf("ROW: %d COL: %d\n", ROW, COL);
@@ -114,7 +113,7 @@ int main(int argc, char **argv)
     // Do the measurement
     start_timer();
     for (i = 0; i < REPEATNTIMES; i++) {
-        matvec(ROW, COLWIDTH, a, b, x, c);
+        matvec(ROW, COLWIDTH, a, b, x);
     }
     duration = stop_timer();
 

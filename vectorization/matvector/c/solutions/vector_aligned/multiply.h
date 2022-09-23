@@ -23,5 +23,5 @@ extern unsigned int inc_i;
 extern unsigned int inc_j;
 
 extern void matvec(unsigned int rows, unsigned int cols,
-                    FTYPE (*a)[cols], FTYPE *b, FTYPE *x, FTYPE *c);
+                    FTYPE (*a)[cols], FTYPE *b, FTYPE *x);
 #endif /* _MULTIPLY_H_ */

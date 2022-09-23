@@ -104,7 +104,6 @@ int main(int argc, char **argv)
 	// 16 byte for SSE, 32 byte for AVX & 64 byte for AVX-512
 	__declspec(align(32)) FTYPE a[ROW][COLWIDTH];
 	__declspec(align(32)) FTYPE b[ROW] = { 0.0 };
-	__declspec(align(32)) FTYPE c[ROW] = { 0.0 };
 	__declspec(align(32)) FTYPE x[COLWIDTH];
 
     printf("ROW: %d COL: %d\n", ROW, COL);
@@ -116,7 +115,7 @@ int main(int argc, char **argv)
     // Do the measurement
     start_timer();
     for (i = 0; i < REPEATNTIMES; i++) {
-        matvec(ROW, COLWIDTH, a, b, x, c);
+        matvec(ROW, COLWIDTH, a, b, x);
     }
     duration = stop_timer();
 
