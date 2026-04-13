@@ -39,7 +39,6 @@ void matvec(unsigned int rows, unsigned int cols,
 
     for (i = 0; i < rows; i += inc_i) {
 #pragma ivdep
-#pragma vector aligned
         for (j = 0; j < cols; j += inc_j) {
             bx[i] += ax[i][j] * xx[j] + cx[i];
         }
