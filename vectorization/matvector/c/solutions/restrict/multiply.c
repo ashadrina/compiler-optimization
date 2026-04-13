@@ -15,7 +15,7 @@
 #include "multiply.h"
 
 void matvec(unsigned int rows, unsigned int cols,
-            FTYPE (*a)[cols], FTYPE * restrict b, FTYPE *x, FTYPE *c)
+            FTYPE (*a)[cols], FTYPE *__restrict b, FTYPE *x, FTYPE *c)
 {
     int i, j;
 
